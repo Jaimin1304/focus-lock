@@ -1,0 +1,282 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      /* 护眼深色简约风格 - 深灰底色 + 绿色功能色 */
+      :root {
+        --bg-primary: #1a1a1a;
+        --bg-secondary: #252525;
+        --bg-tertiary: #2d2d2d;
+        --text-primary: #e8e8e8;
+        --text-secondary: #a0a0a0;
+        --text-muted: #6b6b6b;
+        --accent-primary: #4ade80;
+        --accent-hover: #22c55e;
+        --accent-muted: #166534;
+        --danger: #ef4444;
+        --danger-hover: #dc2626;
+        --border-color: #3a3a3a;
+      }
+
+      body {
+        width: 350px;
+        padding: 20px;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        margin: 0;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .header h1 {
+        color: var(--accent-primary);
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      .header p {
+        color: var(--text-secondary);
+        margin: 5px 0;
+        font-size: 12px;
+      }
+
+      .add-site-section {
+        background: var(--bg-secondary);
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        border: 1px solid var(--border-color);
+      }
+
+      .add-site-section h3 {
+        color: var(--text-primary);
+        font-weight: 600;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 500;
+        color: var(--text-secondary);
+        font-size: 13px;
+      }
+
+      input[type="text"],
+      input[type="time"] {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        font-size: 14px;
+        box-sizing: border-box;
+        background: var(--bg-tertiary);
+        color: var(--text-primary);
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+      }
+
+      input[type="text"]::placeholder {
+        color: var(--text-muted);
+      }
+
+      input[type="text"]:focus,
+      input[type="time"]:focus {
+        outline: none;
+        border-color: var(--accent-primary);
+        box-shadow: 0 0 0 2px rgba(74, 222, 128, 0.15);
+      }
+
+      .time-range {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .time-range span {
+        color: var(--text-secondary);
+      }
+
+      .time-range input {
+        flex: 1;
+      }
+
+      .days-selector {
+        display: flex;
+        gap: 5px;
+        margin-top: 10px;
+      }
+
+      .day-btn {
+        padding: 6px 10px;
+        border: 1px solid var(--border-color);
+        background: var(--bg-tertiary);
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 12px;
+        color: var(--text-secondary);
+        transition: all 0.2s;
+      }
+
+      .day-btn:hover {
+        border-color: var(--accent-primary);
+        color: var(--accent-primary);
+      }
+
+      .day-btn.active {
+        background: var(--accent-muted);
+        color: var(--accent-primary);
+        border-color: var(--accent-primary);
+      }
+
+      .btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.2s;
+      }
+
+      .btn-primary {
+        background: var(--accent-primary);
+        color: var(--bg-primary);
+      }
+
+      .btn-primary:hover {
+        background: var(--accent-hover);
+        box-shadow: 0 2px 8px rgba(74, 222, 128, 0.3);
+      }
+
+      .btn-danger {
+        background: rgba(239, 68, 68, 0.15);
+        color: var(--danger);
+        padding: 5px 10px;
+        font-size: 12px;
+        border: 1px solid rgba(239, 68, 68, 0.3);
+      }
+
+      .btn-danger:hover {
+        background: rgba(239, 68, 68, 0.25);
+        border-color: var(--danger);
+      }
+
+      .sites-list {
+        background: var(--bg-secondary);
+        border-radius: 10px;
+        border: 1px solid var(--border-color);
+        max-height: 200px;
+        overflow-y: auto;
+      }
+
+      /* 自定义滚动条 */
+      .sites-list::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      .sites-list::-webkit-scrollbar-track {
+        background: var(--bg-secondary);
+        border-radius: 3px;
+      }
+
+      .sites-list::-webkit-scrollbar-thumb {
+        background: var(--border-color);
+        border-radius: 3px;
+      }
+
+      .sites-list::-webkit-scrollbar-thumb:hover {
+        background: var(--text-muted);
+      }
+
+      .site-item {
+        padding: 15px;
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .site-item:last-child {
+        border-bottom: none;
+      }
+
+      .site-info {
+        flex: 1;
+      }
+
+      .site-domain {
+        font-weight: 500;
+        color: var(--text-primary);
+      }
+
+      .site-schedule {
+        font-size: 12px;
+        color: var(--text-secondary);
+        margin-top: 5px;
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 30px;
+        color: var(--text-muted);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>🔒 Focus Lock 自律锁</h1>
+      <p>保持专注，远离干扰</p>
+    </div>
+
+    <div class="add-site-section">
+      <h3 style="margin-top: 0">添加受限网站</h3>
+
+      <div class="form-group">
+        <label for="siteInput">网站域名 (例如: netflix.com)</label>
+        <input type="text" id="siteInput" placeholder="输入域名" />
+      </div>
+
+      <div class="form-group">
+        <label>限制时间段</label>
+        <div class="time-range">
+          <input type="time" id="startTime" value="09:00" />
+          <span>至</span>
+          <input type="time" id="endTime" value="17:00" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>限制日期</label>
+        <div class="days-selector">
+          <button class="day-btn" data-day="1">周一</button>
+          <button class="day-btn" data-day="2">周二</button>
+          <button class="day-btn" data-day="3">周三</button>
+          <button class="day-btn" data-day="4">周四</button>
+          <button class="day-btn" data-day="5">周五</button>
+          <button class="day-btn" data-day="6">周六</button>
+          <button class="day-btn" data-day="0">周日</button>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" id="addSiteBtn">添加网站</button>
+    </div>
+
+    <div class="sites-list" id="sitesList">
+      <div class="empty-state">暂无受限网站</div>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

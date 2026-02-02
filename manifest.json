@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "Focus Lock",
+  "version": "1.0",
+  "description": "在工作时间阻止访问干扰网站，帮助你保持专注",
+
+  "permissions": ["tabs", "storage", "activeTab"],
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Focus Lock Settings"
+  },
+
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+
+  "web_accessible_resources": [
+    {
+      "resources": ["blocked.html"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

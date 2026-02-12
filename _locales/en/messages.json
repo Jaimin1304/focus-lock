@@ -1,0 +1,181 @@
+{
+  "extName": {
+    "message": "Focus Lock"
+  },
+  "extDescription": {
+    "message": "Block distracting websites during work hours to help you stay focused"
+  },
+  "extTitle": {
+    "message": "Focus Lock Settings"
+  },
+  "popupTitle": {
+    "message": "🔒 Focus Lock"
+  },
+  "popupSubtitle": {
+    "message": "Stay focused, away from distractions"
+  },
+  "addSiteHeader": {
+    "message": "Add Restricted Site"
+  },
+  "domainLabel": {
+    "message": "Domain (e.g. netflix.com)"
+  },
+  "domainPlaceholder": {
+    "message": "Enter domain"
+  },
+  "timeRangeLabel": {
+    "message": "Restriction Period"
+  },
+  "timeTo": {
+    "message": "to"
+  },
+  "daysLabel": {
+    "message": "Restriction Days"
+  },
+  "mon": {
+    "message": "Mon"
+  },
+  "tue": {
+    "message": "Tue"
+  },
+  "wed": {
+    "message": "Wed"
+  },
+  "thu": {
+    "message": "Thu"
+  },
+  "fri": {
+    "message": "Fri"
+  },
+  "sat": {
+    "message": "Sat"
+  },
+  "sun": {
+    "message": "Sun"
+  },
+  "addSiteBtn": {
+    "message": "Add Site"
+  },
+  "emptyState": {
+    "message": "No restricted sites yet"
+  },
+  "deleteBtn": {
+    "message": "Delete"
+  },
+  "alertEnterDomain": {
+    "message": "Please enter a domain"
+  },
+  "alertSetTime": {
+    "message": "Please set a time range"
+  },
+  "alertSelectDay": {
+    "message": "Please select at least one day"
+  },
+  "alertDeleteError": {
+    "message": "Error deleting site, please try again"
+  },
+  "alertAddError": {
+    "message": "Error adding site, please try again"
+  },
+  "confirmDelete": {
+    "message": "Staying focused has many benefits, but persistence is key. Are you sure you want to unblock $DOMAIN$?",
+    "placeholders": {
+      "domain": {
+        "content": "$1"
+      }
+    }
+  },
+  "blockedTitle": {
+    "message": "Focus Lock"
+  },
+  "blockedSubtitle": {
+    "message": "Stay focused, away from distractions"
+  },
+  "blockedMsg1": {
+    "message": "This site is blocked during the current time period"
+  },
+  "blockedMsg2": {
+    "message": "This is to help you stay focused and work efficiently"
+  },
+  "tipsTitle": {
+    "message": "Focus Tips"
+  },
+  "tip1": {
+    "message": "Take three deep breaths to refocus your mind"
+  },
+  "tip2": {
+    "message": "Drink a glass of water to stay energized"
+  },
+  "tip3": {
+    "message": "Tidy up your workspace"
+  },
+  "tip4": {
+    "message": "Review your current work goals"
+  },
+  "tip5": {
+    "message": "Do some simple stretching exercises"
+  },
+  "footer": {
+    "message": "Focus Lock helps you build better browsing habits"
+  },
+  "quote1": {
+    "message": "A journey of a thousand miles begins with a single step."
+  },
+  "quote2": {
+    "message": "Do not dwell on the past, do not worry about the future, focus on the present."
+  },
+  "quote3": {
+    "message": "The more one thinks of good, the better the world becomes."
+  },
+  "quote4": {
+    "message": "You have power over your mind, not outside events. Realize this, and you will find strength."
+  },
+  "quote5": {
+    "message": "Sitting quietly, doing nothing, spring comes, and the grass grows by itself."
+  },
+  "quote6": {
+    "message": "Demand not that events happen as you wish, but wish them to happen as they do, and you will go on well."
+  },
+  "quote7": {
+    "message": "When the mind is still, all things return to one."
+  },
+  "quote8": {
+    "message": "Meditation is the inner awareness of the mind's nature remaining unmoved."
+  },
+  "quote9": {
+    "message": "We suffer more often in imagination than in reality."
+  },
+  "quote10": {
+    "message": "The first and best victory is to conquer self."
+  },
+  "quote11": {
+    "message": "The truly free person is the one who masters oneself."
+  },
+  "quote12": {
+    "message": "A mind like still water can reflect the entire universe."
+  },
+  "quote13": {
+    "message": "In good and evil, let no thought arise — this is called sitting. Seeing the self-nature unmoved — this is called meditation."
+  },
+  "daySun": {
+    "message": "Sun"
+  },
+  "dayMon": {
+    "message": "Mon"
+  },
+  "dayTue": {
+    "message": "Tue"
+  },
+  "dayWed": {
+    "message": "Wed"
+  },
+  "dayThu": {
+    "message": "Thu"
+  },
+  "dayFri": {
+    "message": "Fri"
+  },
+  "daySat": {
+    "message": "Sat"
+  }
+}

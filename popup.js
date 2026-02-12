@@ -1,9 +1,11 @@
-// 弹出窗口的JavaScript逻辑
+// popup.js - 弹出窗口的JavaScript逻辑
 
 // 当弹出窗口加载完成时初始化
 document.addEventListener("DOMContentLoaded", function () {
-  // 获取DOM元素
+  // 应用国际化翻译
+  applyI18n()
 
+  // 获取DOM元素
   const siteInput = document.getElementById("siteInput")
   const startTime = document.getElementById("startTime")
   const endTime = document.getElementById("endTime")
@@ -15,7 +17,6 @@ document.addEventListener("DOMContentLoaded", function () {
   loadSettings()
 
   // 绑定事件监听器
-
   addSiteBtn.addEventListener("click", addSite)
 
   // 处理星期几选择按钮
@@ -38,16 +39,12 @@ document.addEventListener("DOMContentLoaded", function () {
     try {
       const result = await chrome.storage.sync.get(["blockedSites"])
 
-
-
       // 显示已保存的网站列表
       displaySites(result.blockedSites || [])
     } catch (error) {
-      console.error("加载设置时出错:", error)
+      console.error("Error loading settings:", error)
     }
   }
-
-
 
   // 添加新的受限网站
   async function addSite() {
@@ -57,12 +54,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 输入验证
     if (!domain) {
-      alert("请输入网站域名")
+      alert(t("alertEnterDomain"))
       return
     }
 
     if (!start || !end) {
-      alert("请设置时间范围")
+      alert(t("alertSetTime"))
       return
     }
 
@@ -72,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .map((btn) => parseInt(btn.dataset.day))
 
     if (selectedDays.length === 0) {
-      alert("请选择至少一个星期几")
+      alert(t("alertSelectDay"))
       return
     }
 
@@ -105,10 +102,8 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       if (existingIndex >= 0) {
-        // 如果域名已存在，更新时间范围
         blockedSites[existingIndex] = newSite
       } else {
-        // 添加新域名
         blockedSites.push(newSite)
       }
 
@@ -120,36 +115,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // 刷新显示
       displaySites(blockedSites)
-
-      console.log("网站已添加:", cleanDomain)
     } catch (error) {
-      console.error("添加网站时出错:", error)
-      alert("添加网站时出错，请重试")
+      console.error("Error adding site:", error)
+      alert(t("alertAddError"))
     }
   }
 
   // 显示网站列表
   function displaySites(sites) {
     if (!sites || sites.length === 0) {
-      sitesList.innerHTML = '<div class="empty-state">暂无受限网站</div>'
+      sitesList.innerHTML = `<div class="empty-state">${t("emptyState")}</div>`
       return
     }
 
-    // 生成网站列表HTML（注意：移除了内联onclick事件）
+    const dayKeys = ["daySun", "dayMon", "dayTue", "dayWed", "dayThu", "dayFri", "daySat"]
+
     sitesList.innerHTML = sites
       .map((site) => {
         const schedule = site.timeRanges
           .map((range) => {
-            const dayNames = [
-              "周日",
-              "周一",
-              "周二",
-              "周三",
-              "周四",
-              "周五",
-              "周六",
-            ]
-            const daysText = range.days.map((day) => dayNames[day]).join(", ")
+            const daysText = range.days.map((day) => t(dayKeys[day])).join(", ")
             return `${daysText} ${range.start}-${range.end}`
           })
           .join("; ")
@@ -160,39 +145,30 @@ document.addEventListener("DOMContentLoaded", function () {
                         <div class="site-domain">${site.domain}</div>
                         <div class="site-schedule">${schedule}</div>
                     </div>
-                    <button class="btn btn-danger" data-domain="${site.domain}">删除</button>
+                    <button class="btn btn-danger" data-domain="${site.domain}">${t("deleteBtn")}</button>
                 </div>
             `
       })
       .join("")
 
-    // 使用事件委托为删除按钮绑定事件处理器
-    // 这种方式符合CSP规则，更安全也更高效
     bindDeleteButtons()
   }
 
   // 使用事件委托绑定删除按钮的点击事件
   function bindDeleteButtons() {
-    // 移除之前的事件监听器，避免重复绑定
     sitesList.removeEventListener("click", handleDeleteClick)
-
-    // 添加新的事件监听器
     sitesList.addEventListener("click", handleDeleteClick)
   }
 
   // 处理删除按钮点击事件的函数
   async function handleDeleteClick(event) {
-    // 检查点击的是否是删除按钮
     if (event.target.classList.contains("btn-danger")) {
       const domain = event.target.getAttribute("data-domain")
 
-      if (!domain) {
-        console.error("无法获取要删除的域名")
-        return
-      }
+      if (!domain) return
 
       // 确认删除
-      if (!confirm(`持久专注好处多多，但是贵在坚持，真的要解除对 ${domain} 的限制吗？`)) {
+      if (!confirm(t("confirmDelete", domain))) {
         return
       }
 
@@ -200,21 +176,15 @@ document.addEventListener("DOMContentLoaded", function () {
         const result = await chrome.storage.sync.get(["blockedSites"])
         const blockedSites = result.blockedSites || []
 
-        // 移除指定域名
         const updatedSites = blockedSites.filter(
           (site) => site.domain !== domain
         )
 
-        // 保存更新后的列表
         await chrome.storage.sync.set({ blockedSites: updatedSites })
-
-        // 刷新显示
         displaySites(updatedSites)
-
-        console.log("网站已删除:", domain)
       } catch (error) {
-        console.error("删除网站时出错:", error)
-        alert("删除网站时出错，请重试")
+        console.error("Error deleting site:", error)
+        alert(t("alertDeleteError"))
       }
     }
   }

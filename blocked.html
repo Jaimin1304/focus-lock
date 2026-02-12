@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="zh-CN">
+<html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Focus Lock - 网站已被阻止</title>
+    <title data-i18n-title="blockedTitle">Focus Lock</title>
     <style>
       /* 护眼深色简约风格 - 深灰底色 + 绿色功能色 */
       :root {
@@ -99,11 +99,6 @@
         line-height: 1.6;
       }
 
-      .quote-author {
-        font-size: 13px;
-        color: var(--accent-primary);
-      }
-
       .current-time {
         font-size: 28px;
         font-weight: 600;
@@ -176,36 +171,35 @@
   <body>
     <div class="container breathing-animation">
       <div class="lock-icon">🔒</div>
-      <h1 class="title">Focus Lock 自律锁</h1>
-      <p class="subtitle">保持专注，远离干扰</p>
+      <h1 class="title" data-i18n="blockedTitle"></h1>
+      <p class="subtitle" data-i18n="blockedSubtitle"></p>
 
       <div class="current-time" id="currentTime"></div>
 
       <div class="message">
-        <p>这个网站在当前时间段被阻止访问</p>
-        <p>这是为了帮助你保持专注和高效工作</p>
+        <p data-i18n="blockedMsg1"></p>
+        <p data-i18n="blockedMsg2"></p>
       </div>
 
       <div class="motivational">
-        <div class="motivational-quote" id="motivationalQuote">
-          "专注是一种超能力，它能让你在嘈杂的世界中保持清晰的思考。"
-        </div>
+        <div class="motivational-quote" id="motivationalQuote"></div>
       </div>
 
       <div class="tips">
-        <h3>专注小贴士</h3>
+        <h3 data-i18n="tipsTitle"></h3>
         <ul>
-          <li>深呼吸三次，让大脑重新聚焦</li>
-          <li>喝一杯水，保持身体活力</li>
-          <li>整理一下工作区域</li>
-          <li>回顾一下当前的工作目标</li>
-          <li>做几个简单的伸展运动</li>
+          <li data-i18n="tip1"></li>
+          <li data-i18n="tip2"></li>
+          <li data-i18n="tip3"></li>
+          <li data-i18n="tip4"></li>
+          <li data-i18n="tip5"></li>
         </ul>
       </div>
 
-      <div class="footer">Focus Lock 帮助你建立更好的上网习惯</div>
+      <div class="footer" data-i18n="footer"></div>
     </div>
 
+    <script src="i18n.js"></script>
     <script src="blocked.js"></script>
   </body>
 </html>

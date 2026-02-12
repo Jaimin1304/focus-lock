@@ -1,9 +1,12 @@
 // blocked.js - 阻止页面的JavaScript逻辑
 
+// 应用国际化翻译
+applyI18n()
+
 // 显示当前时间
 function updateTime() {
   const now = new Date()
-  const timeString = now.toLocaleTimeString("zh-CN", {
+  const timeString = now.toLocaleTimeString([], {
     hour12: false,
     hour: "2-digit",
     minute: "2-digit",
@@ -16,55 +19,17 @@ function updateTime() {
 updateTime()
 setInterval(updateTime, 1000)
 
-// 励志语录数组
-const motivationalQuotes = [
-  {
-    quote: "千里之行，始于足下。",
-  },
-  {
-    quote: "不念过去，不忧未来，专注当下。",
-  },
-  {
-    quote: "人愈思善，其世界愈善，整个世界亦然。",
-  },
-  {
-    quote: "你掌控自己的心灵，而非外部事件。认识到这一点，你将找到力量。",
-  },
-  {
-    quote: "静坐无事，春来草自生。",
-  },
-  {
-    quote: "勿求事如己愿，但愿事如其然，则人生宁静流畅。",
-  },
-  {
-    quote: "心静则万物归一。",
-  },
-  {
-    quote: "禅定即是内在觉知心性之不动。",
-  },
-  {
-    quote: "我们在想象中遭受的痛苦往往多于现实。",
-  },
-  {
-    quote: "征服自我是第一且最好的胜利。",
-  },
-  {
-    quote: "真正自由的人，是掌控自己的人。",
-  },
-  {
-    quote: "心如止水，方能映照天地万物。",
-  },
-  {
-    quote: "在善恶之中，心不起念，此谓之坐；在自性不动中，此谓之禅。",
-  },
+// 励志语录 — 从 i18n 消息中加载
+const quoteKeys = [
+  "quote1", "quote2", "quote3", "quote4", "quote5", "quote6",
+  "quote7", "quote8", "quote9", "quote10", "quote11", "quote12", "quote13",
 ]
 
 // 随机显示励志语录
 function showRandomQuote() {
-  const randomIndex = Math.floor(Math.random() * motivationalQuotes.length)
-  const randomQuote = motivationalQuotes[randomIndex]
+  const key = quoteKeys[Math.floor(Math.random() * quoteKeys.length)]
   document.getElementById("motivationalQuote").textContent =
-    `"${randomQuote.quote}"`
+    `"${t(key)}"`
 }
 
 // 初始显示随机语录

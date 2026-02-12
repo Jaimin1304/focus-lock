@@ -236,47 +236,56 @@
   </head>
   <body>
     <div class="header">
-      <h1>🔒 Focus Lock 自律锁</h1>
-      <p>保持专注，远离干扰</p>
+      <h1 data-i18n="popupTitle"></h1>
+      <p data-i18n="popupSubtitle"></p>
     </div>
 
     <div class="add-site-section">
-      <h3 style="margin-top: 0">添加受限网站</h3>
+      <h3 style="margin-top: 0" data-i18n="addSiteHeader"></h3>
 
       <div class="form-group">
-        <label for="siteInput">网站域名 (例如: netflix.com)</label>
-        <input type="text" id="siteInput" placeholder="输入域名" />
+        <label for="siteInput" data-i18n="domainLabel"></label>
+        <input
+          type="text"
+          id="siteInput"
+          data-i18n-placeholder="domainPlaceholder"
+        />
       </div>
 
       <div class="form-group">
-        <label>限制时间段</label>
+        <label data-i18n="timeRangeLabel"></label>
         <div class="time-range">
           <input type="time" id="startTime" value="09:00" />
-          <span>至</span>
+          <span data-i18n="timeTo"></span>
           <input type="time" id="endTime" value="17:00" />
         </div>
       </div>
 
       <div class="form-group">
-        <label>限制日期</label>
+        <label data-i18n="daysLabel"></label>
         <div class="days-selector">
-          <button class="day-btn" data-day="1">周一</button>
-          <button class="day-btn" data-day="2">周二</button>
-          <button class="day-btn" data-day="3">周三</button>
-          <button class="day-btn" data-day="4">周四</button>
-          <button class="day-btn" data-day="5">周五</button>
-          <button class="day-btn" data-day="6">周六</button>
-          <button class="day-btn" data-day="0">周日</button>
+          <button class="day-btn" data-day="1" data-i18n="mon"></button>
+          <button class="day-btn" data-day="2" data-i18n="tue"></button>
+          <button class="day-btn" data-day="3" data-i18n="wed"></button>
+          <button class="day-btn" data-day="4" data-i18n="thu"></button>
+          <button class="day-btn" data-day="5" data-i18n="fri"></button>
+          <button class="day-btn" data-day="6" data-i18n="sat"></button>
+          <button class="day-btn" data-day="0" data-i18n="sun"></button>
         </div>
       </div>
 
-      <button class="btn btn-primary" id="addSiteBtn">添加网站</button>
+      <button
+        class="btn btn-primary"
+        id="addSiteBtn"
+        data-i18n="addSiteBtn"
+      ></button>
     </div>
 
     <div class="sites-list" id="sitesList">
-      <div class="empty-state">暂无受限网站</div>
+      <div class="empty-state" data-i18n="emptyState"></div>
     </div>
 
+    <script src="i18n.js"></script>
     <script src="popup.js"></script>
   </body>
 </html>

@@ -34,6 +34,75 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   })
 
+  // ---- 时间输入框：鼠标滚轮调整逻辑 ----
+
+  // 解析 "HH:MM" 字符串为 { hours, minutes }
+  function parseTime(str) {
+    const parts = str.split(":")
+    return { hours: parseInt(parts[0]) || 0, minutes: parseInt(parts[1]) || 0 }
+  }
+
+  // 格式化为 "HH:MM"
+  function formatTime(hours, minutes) {
+    return String(hours).padStart(2, "0") + ":" + String(minutes).padStart(2, "0")
+  }
+
+  // 处理滚轮事件
+  function handleTimeWheel(e) {
+    e.preventDefault()
+    const input = e.target
+    const cursorPos = input.selectionStart
+    const { hours, minutes } = parseTime(input.value)
+
+    // 判断光标在小时区域 (0,1,2) 还是分钟区域 (3,4)
+    const isHours = cursorPos <= 2
+
+    // 滚轮方向：deltaY < 0 = 向上滚 = 增加, deltaY > 0 = 向下滚 = 减少
+    const delta = e.deltaY < 0 ? 1 : -1
+
+    let newHours = hours
+    let newMinutes = minutes
+
+    if (isHours) {
+      newHours = (hours + delta + 24) % 24
+    } else {
+      newMinutes = minutes + delta * 5
+      if (newMinutes >= 60) newMinutes = 0
+      if (newMinutes < 0) newMinutes = 55
+    }
+
+    input.value = formatTime(newHours, newMinutes)
+
+    // 恢复光标位置，保持用户的选中区域
+    requestAnimationFrame(() => {
+      if (isHours) {
+        input.setSelectionRange(0, 2)
+      } else {
+        input.setSelectionRange(3, 5)
+      }
+    })
+  }
+
+  // 点击时自动选中小时或分钟部分
+  function handleTimeClick(e) {
+    const input = e.target
+    const cursorPos = input.selectionStart
+
+    requestAnimationFrame(() => {
+      if (cursorPos <= 2) {
+        input.setSelectionRange(0, 2)
+      } else {
+        input.setSelectionRange(3, 5)
+      }
+    })
+  }
+
+  // 为两个时间输入框绑定事件
+  ;[startTime, endTime].forEach((input) => {
+    input.addEventListener("wheel", handleTimeWheel, { passive: false })
+    input.addEventListener("click", handleTimeClick)
+  })
+
   // 从存储中加载设置
   async function loadSettings() {
     try {

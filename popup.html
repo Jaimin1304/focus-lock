@@ -72,8 +72,7 @@
         font-size: 13px;
       }
 
-      input[type="text"],
-      input[type="time"] {
+      input[type="text"] {
         width: 100%;
         padding: 10px 12px;
         border: 1px solid var(--border-color);
@@ -87,12 +86,19 @@
           box-shadow 0.2s;
       }
 
+      .time-input {
+        text-align: center;
+        font-family: "SF Mono", "Consolas", "Monaco", monospace;
+        font-size: 15px;
+        letter-spacing: 1px;
+        cursor: default;
+      }
+
       input[type="text"]::placeholder {
         color: var(--text-muted);
       }
 
-      input[type="text"]:focus,
-      input[type="time"]:focus {
+      input[type="text"]:focus {
         outline: none;
         border-color: var(--accent-primary);
         box-shadow: 0 0 0 2px rgba(74, 222, 128, 0.15);
@@ -255,9 +261,21 @@
       <div class="form-group">
         <label data-i18n="timeRangeLabel"></label>
         <div class="time-range">
-          <input type="time" id="startTime" value="09:00" />
+          <input
+            type="text"
+            id="startTime"
+            class="time-input"
+            value="09:00"
+            readonly
+          />
           <span data-i18n="timeTo"></span>
-          <input type="time" id="endTime" value="17:00" />
+          <input
+            type="text"
+            id="endTime"
+            class="time-input"
+            value="17:00"
+            readonly
+          />
         </div>
       </div>
 
